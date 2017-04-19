@@ -19,8 +19,8 @@ public class APExam extends Canvas {
     double answer, comp;
     
     private JPanel window = new JPanel();
-	private JButton one, two, three, four, five, six, seven, eight, nine;
-	private Rectangle rone, rtwo, rthree, rfour, rfive, rsix, rseven, reight, rnine;
+	private JButton zero, one, two, three, four, five, six, seven, eight, nine, addition, subtraction;
+	private Rectangle rzero, rone, rtwo, rthree, rfour, rfive, rsix, rseven, reight, rnine, raddition, rsubtraction;
 	protected int buttonWidth = 60;
 	protected int buttonHeight = 30;
     
@@ -116,12 +116,16 @@ public class APExam extends Canvas {
         
         button.addActionListener(new ActionListener() {
         		public void actionPerformed(ActionEvent e) {
+        			int a = 0;
+        			int b = 0;
         			if (id == 1) {
         				System.out.println("Button One!");
-        				
+        				a = 1;
+        				System.out.println(a);
         			} else if (id == 2) {
         				System.out.println("Button Two!");
-        				
+        				b = 2;
+        				System.out.println(b);
         			} else if (id == 3) {
         				System.out.println("Button Three!");
         				
@@ -131,11 +135,28 @@ public class APExam extends Canvas {
         			} else if (id == 5) {
         				System.out.println("Button Five!");
         				
-        			} else if (id == 5) {
-        				System.out.println("Button Five!");
+        			} else if (id == 6) {
+        				System.out.println("Button Six!");
         				
-        			} else if (id == 5) {
-        				System.out.println("Button Five!");
+        			} else if (id == 7) {
+        				System.out.println("Button Seven!");
+        				
+        			} else if (id == 8) {
+        				System.out.println("Button Eight!");
+        				
+        			} else if (id == 9) {
+        				System.out.println("Button Nine!");
+        				
+        			} else if (id == 0) {
+        				System.out.println("Button Zero!");
+        				
+        			} else if (id == 10) {
+        				System.out.println("Add!");
+        				comp = 1;
+        				thing(a, b);
+        				
+        			} else if (id == 110) {
+        				System.out.println("Subtract!");
         				
         			}
         		}
@@ -147,9 +168,6 @@ public class APExam extends Canvas {
     	APExam main = new APExam();
     	Scanner scanner = new Scanner(System.in);
     	double x, y;
-    	x = scanner.nextDouble();
-    	y = scanner.nextDouble();
-    	main.comp = scanner.nextDouble();
     	//String comp;
    	 
     	JFrame frame = new JFrame();//original code named this "FrameDemo" as a string parameter
@@ -169,7 +187,14 @@ public class APExam extends Canvas {
         main.drawButtons("7", main.seven, main.rseven, 156, 12, 7);
         main.drawButtons("8", main.eight, main.reight, 156, 54, 8);
         main.drawButtons("9", main.nine, main.rnine, 156, 96, 9);
+        main.drawButtons("0", main.zero, main.rzero, 84, 138, 0);
+        main.drawButtons("+", main.addition, main.raddition, 228, 12, 10);
+        main.drawButtons("-", main.subtraction, main.rsubtraction, 228, 54, 11);
    	 
+        x = scanner.nextDouble();
+        y = scanner.nextDouble();
+        main.comp = scanner.nextDouble();
+        
     	main.thing(x, y);
 	}
     
