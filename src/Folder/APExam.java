@@ -34,7 +34,7 @@ public class APExam extends Canvas {
     	} else if (comp == 4) {
     		System.out.println(divide(x, y));
     	} else if (comp == 5) {
-    		System.out.println(exponentialMultiplication(x,y));
+    		System.out.println(expo(x,y));
     	} else if (comp == 6){
     		System.out.println(radicals(x,y));
     	}
@@ -65,7 +65,7 @@ public class APExam extends Canvas {
 		double ai = 0;
 		double incri = 1;
 		while (!(((ai-x<0) && (ai-x>-0.000000001)) || ((ai-x>0) && (ai-x<0.000000001)))) {
-			ai = exponentialMultiplication(a,y);
+			ai = expo(a,y);
 			if (ai < x){
 				a = a+incri;
 			} else if (ai > x){
@@ -74,12 +74,12 @@ public class APExam extends Canvas {
 			}
 			System.out.println(a);
 		}
-		a = Math.floor(a * 100000000) / 100000000;
+		a = Math.floor(a * 10000000) / 10000000;
 		answer = a;
 		return answer;
 	}
     
-	private double exponentialMultiplication(double x, double y) {
+	private double expo(double x, double y) {
     	double a = x;
     	long ipart = (long) y;
     	y = y - ipart;
@@ -96,13 +96,14 @@ public class APExam extends Canvas {
     		a = 1;
     	} 
     	if (y<0){
-    		for (double i = 0; i > y; i = i-0.0000001) {
-    			a = a / radicals(x,10000000);
+    		int yarr[];
+    		for (int i = 0; i < 10; i++){
+    			yarr[i] = (int)(y * 10);
+    			y = y - (int)(y * expo(10, i+1))/10;
     		}
+    		a = a / radicals(x,(int) divide(1,y));
     	} else if (y>0){
-    		for (double i = 0; i < y; i = i+0.0000001) {
-    			a = a * radicals(x,10000000);
-    		}
+    		a = a * radicals(x,(int) divide(1,y));
     	}
     	answer = a;
     	return answer;
