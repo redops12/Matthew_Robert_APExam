@@ -37,6 +37,8 @@ public class APExam extends Canvas {
     		System.out.println(exponentialMultiplication(x,y));
     	} else if (comp == 6){
     		System.out.println(radicals(x,y));
+    	} else if (comp == 8) {
+    		System.out.println(sin((int) x, 0));
     	}
 	}
     
@@ -106,6 +108,156 @@ public class APExam extends Canvas {
     	}
     	answer = a;
     	return answer;
+	}
+	
+	private int sin(int ang, int y) {
+		int[] sinValues = {12, 13, 14};
+		return sinValues[ang - 1];
+	}
+	
+	private void drawButtons() {
+		zero = new JButton("0");
+        rzero = new Rectangle(84, 138, buttonWidth, buttonHeight);
+        zero.setBounds(rzero);
+        window.add(zero);
+        
+        one = new JButton("1");
+        rone = new Rectangle(12, 12, buttonWidth, buttonHeight);
+        one.setBounds(rone);
+        window.add(one);
+        
+        two = new JButton("2");
+        rtwo = new Rectangle(12, 54, buttonWidth, buttonHeight);
+        two.setBounds(rtwo);
+        window.add(two);
+        
+        three = new JButton("3");
+        rthree = new Rectangle(12, 96, buttonWidth, buttonHeight);
+        three.setBounds(rthree);
+        window.add(three);
+        
+        four = new JButton("4");
+        rfour = new Rectangle(84, 12, buttonWidth, buttonHeight);
+        four.setBounds(rfour);
+        window.add(four);
+        
+        five = new JButton("5");
+        rfive = new Rectangle(84, 54, buttonWidth, buttonHeight);
+        five.setBounds(rfive);
+        window.add(five);
+        
+        six = new JButton("6");
+        rsix = new Rectangle(84, 96, buttonWidth, buttonHeight);
+        six.setBounds(rsix);
+        window.add(six);
+        
+        seven = new JButton("7");
+        rseven = new Rectangle(156, 12, buttonWidth, buttonHeight);
+        seven.setBounds(rseven);
+        window.add(seven);
+        
+        eight = new JButton("8");
+        reight = new Rectangle(156, 54, buttonWidth, buttonHeight);
+        eight.setBounds(reight);
+        window.add(eight);
+        
+        nine = new JButton("9");
+        rnine = new Rectangle(156, 96, buttonWidth, buttonHeight);
+        nine.setBounds(rnine);
+        window.add(nine);
+        
+        addition = new JButton("+");
+        raddition = new Rectangle(228, 12, buttonWidth, buttonHeight);
+        addition.setBounds(raddition);
+        window.add(addition);
+        
+        subtraction = new JButton("-");
+        rsubtraction = new Rectangle(228, 54, buttonWidth, buttonHeight);
+        subtraction.setBounds(rsubtraction);
+        window.add(subtraction);
+        
+        int a;
+        int b;
+        
+        zero.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button Zero!");
+            }
+        });
+        
+        one.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button One!");
+                //a = 1;
+            }
+        });
+        
+        two.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button Two!");
+            }
+        });
+        three.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button Three!");
+            }
+        });
+        
+        four.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button Four!");
+            }
+        });
+        
+        five.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button Five!");
+            }
+        });
+        
+        six.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button Six!");
+            }
+        });
+        
+        seven.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button Seven!");
+            }
+        });
+        
+        eight.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Add!");
+            }
+        });
+        
+        nine.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Subtract!");
+            }
+        });
+        
+        addition.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button Nine!");
+            }
+        });
+        
+        subtraction.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button Nine!");
+            }
+        });
+    }
+
+	class Operator implements ActionListener {
+		
+		public void actionPerformed(ActionEvent e) {
+			
+		}
+		
 	}
 	
 	private void drawButtons(String name, JButton button, Rectangle rect, int x, int y, final int id) {
@@ -178,7 +330,9 @@ public class APExam extends Canvas {
         frame.setVisible(true);
         main.window.setLayout(null);
         
-        main.drawButtons("1", main.one, main.rone, 12, 12, 1);
+        main.drawButtons();
+        
+        /*main.drawButtons("1", main.one, main.rone, 12, 12, 1);
         main.drawButtons("2", main.two, main.rtwo, 12, 54, 2);
         main.drawButtons("3", main.three, main.rthree, 12, 96, 3);
         main.drawButtons("4", main.four, main.rfour, 84, 12, 4);
@@ -189,7 +343,7 @@ public class APExam extends Canvas {
         main.drawButtons("9", main.nine, main.rnine, 156, 96, 9);
         main.drawButtons("0", main.zero, main.rzero, 84, 138, 0);
         main.drawButtons("+", main.addition, main.raddition, 228, 12, 10);
-        main.drawButtons("-", main.subtraction, main.rsubtraction, 228, 54, 11);
+        main.drawButtons("-", main.subtraction, main.rsubtraction, 228, 54, 11);*/
    	 
         x = scanner.nextDouble();
         y = scanner.nextDouble();
