@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -19,8 +21,8 @@ public class APExam extends Canvas {
     double answer, comp;
     
     private JPanel window = new JPanel();
-	private JButton one, two, three, four, five, six, seven, eight, nine;
-	private Rectangle rone, rtwo, rthree, rfour, rfive, rsix, rseven, reight, rnine;
+	private JButton zero, one, two, three, four, five, six, seven, eight, nine, addition, subtraction;
+	private Rectangle rzero, rone, rtwo, rthree, rfour, rfive, rsix, rseven, reight, rnine, raddition, rsubtraction;
 	protected int buttonWidth = 60;
 	protected int buttonHeight = 30;
     
@@ -35,8 +37,14 @@ public class APExam extends Canvas {
     		System.out.println(divide(x, y));
     	} else if (comp == 5) {
     		System.out.println(expo(x,y));
-    	} else if (comp == 6){
+    	} else if (comp == 6) {
     		System.out.println(radicals(x,y));
+    	} else if (comp == 7) {
+    		System.out.println(primeFactor(x,y));
+     	} else if (comp == 8) {
+ 			System.out.println(sin((int) x, 0));
+  		} else if(comp == 9) {
+    		System.out.println(decToFrac(x,y));
     	}
 	}
     
@@ -78,6 +86,36 @@ public class APExam extends Canvas {
 		answer = a;
 		return answer;
 	}
+	
+	
+	private List<Integer> primeFactor(double x, double y) {
+		List<Integer> factors = new ArrayList<Integer>();
+		for (int i = 2; i <= x/2; i++){
+			double tempx = x/i;
+			if (tempx == (int)tempx) {
+				factors.add(i);
+				x = tempx;
+				System.out.println(x);
+				i--;
+			}
+		}
+		factors.add((int)x);
+		return factors;
+	}
+	
+	private String decToFrac(double x, double y){
+		double numer = 1;
+		double denom = 1;
+		int i = 1;
+		while (divide((int) numer,(int) denom)!=x){
+			denom = i*1/x;
+			if (denom == (int) denom) {				
+				numer = i;
+			}
+			i++;
+		}
+		return ((int) numer) + "/" + ((int) denom);
+	}
     
 	private double expo(double x, double y) {
     	double a = x;
@@ -96,17 +134,20 @@ public class APExam extends Canvas {
     		a = 1;
     	} 
     	if (y<0){
-    		int yarr[];
-    		for (int i = 0; i < 10; i++){
-    			yarr[i] = (int)(y * 10);
-    			y = y - (int)(y * expo(10, i+1))/10;
+    		
+    		for (int i = 0; i < 10; i++) {
+
     		}
-    		a = a / radicals(x,(int) divide(1,y));
     	} else if (y>0){
     		a = a * radicals(x,(int) divide(1,y));
     	}
     	answer = a;
     	return answer;
+	}
+	
+	private int sin(int ang, int y) {
+		int[] sinValues = {12, 13, 14};
+		return sinValues[ang - 1];
 	}
 	
 	private void drawButtons(String name, JButton button, Rectangle rect, int x, int y, final int id) {
@@ -117,12 +158,16 @@ public class APExam extends Canvas {
         
         button.addActionListener(new ActionListener() {
         		public void actionPerformed(ActionEvent e) {
+        			int a = 0;
+        			int b = 0;
         			if (id == 1) {
         				System.out.println("Button One!");
-        				
+        				a = 1;
+        				System.out.println(a);
         			} else if (id == 2) {
         				System.out.println("Button Two!");
-        				
+        				b = 2;
+        				System.out.println(b);
         			} else if (id == 3) {
         				System.out.println("Button Three!");
         				
@@ -132,11 +177,28 @@ public class APExam extends Canvas {
         			} else if (id == 5) {
         				System.out.println("Button Five!");
         				
-        			} else if (id == 5) {
-        				System.out.println("Button Five!");
+        			} else if (id == 6) {
+        				System.out.println("Button Six!");
         				
-        			} else if (id == 5) {
-        				System.out.println("Button Five!");
+        			} else if (id == 7) {
+        				System.out.println("Button Seven!");
+        				
+        			} else if (id == 8) {
+        				System.out.println("Button Eight!");
+        				
+        			} else if (id == 9) {
+        				System.out.println("Button Nine!");
+        				
+        			} else if (id == 0) {
+        				System.out.println("Button Zero!");
+        				
+        			} else if (id == 10) {
+        				System.out.println("Add!");
+        				comp = 1;
+        				thing(a, b);
+        				
+        			} else if (id == 110) {
+        				System.out.println("Subtract!");
         				
         			}
         		}
@@ -148,9 +210,6 @@ public class APExam extends Canvas {
     	APExam main = new APExam();
     	Scanner scanner = new Scanner(System.in);
     	double x, y;
-    	x = scanner.nextDouble();
-    	y = scanner.nextDouble();
-    	main.comp = scanner.nextDouble();
     	//String comp;
    	 
     	JFrame frame = new JFrame();//original code named this "FrameDemo" as a string parameter
@@ -170,7 +229,14 @@ public class APExam extends Canvas {
         main.drawButtons("7", main.seven, main.rseven, 156, 12, 7);
         main.drawButtons("8", main.eight, main.reight, 156, 54, 8);
         main.drawButtons("9", main.nine, main.rnine, 156, 96, 9);
+        main.drawButtons("0", main.zero, main.rzero, 84, 138, 0);
+        main.drawButtons("+", main.addition, main.raddition, 228, 12, 10);
+        main.drawButtons("-", main.subtraction, main.rsubtraction, 228, 54, 11);
    	 
+        x = scanner.nextDouble();
+        y = scanner.nextDouble();
+        main.comp = scanner.nextDouble();
+        
     	main.thing(x, y);
 	}
     
