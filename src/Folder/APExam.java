@@ -39,17 +39,12 @@ public class APExam extends Canvas {
     		System.out.println(expo(x,y));
     	} else if (comp == 6) {
     		System.out.println(radicals(x,y));
-<<<<<<< HEAD
     	} else if (comp == 7) {
     		System.out.println(primeFactor(x,y));
-     	} else if (comp == 8) {
- 			System.out.println(sin((int) x, 0));
   		} else if(comp == 9) {
     		System.out.println(decToFrac(x,y));
-=======
     	} else if (comp == 8) {
     		System.out.println(sin((int) x, 0));
->>>>>>> 3f8a842bb7c10cf57e7de80b5e21f5876e6c3523
     	}
 	}
     
@@ -155,8 +150,6 @@ public class APExam extends Canvas {
 		return sinValues[ang - 1];
 	}
 	
-<<<<<<< HEAD
-=======
 	private void drawButtons() {
 		zero = new JButton("0");
         rzero = new Rectangle(84, 138, buttonWidth, buttonHeight);
@@ -302,7 +295,6 @@ public class APExam extends Canvas {
 		
 	}
 	
->>>>>>> 3f8a842bb7c10cf57e7de80b5e21f5876e6c3523
 	private void drawButtons(String name, JButton button, Rectangle rect, int x, int y, final int id) {
     	button = new JButton(name);
         rect = new Rectangle(x, y, buttonWidth, buttonHeight);
@@ -390,7 +382,6 @@ public class APExam extends Canvas {
         main.drawButtons("-", main.subtraction, main.rsubtraction, 228, 54, 11);
 =======
         main.drawButtons("-", main.subtraction, main.rsubtraction, 228, 54, 11);*/
->>>>>>> 3f8a842bb7c10cf57e7de80b5e21f5876e6c3523
    	 
         x = scanner.nextDouble();
         y = scanner.nextDouble();
