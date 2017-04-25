@@ -42,7 +42,9 @@ public class APExam extends Canvas {
     	} else if (comp == 7) {
     		System.out.println(primeFactor(x,y));
   		} else if(comp == 9) {
-    		System.out.println(decToFrac(x,y));
+  			int[] frac = new int[2];
+  			frac = decToFrac(x,y);
+    		System.out.println(frac[0]+"/"+frac[1]);
     	} else if (comp == 8) {
     		System.out.println(sin((int) x, 0));
     	}
@@ -50,21 +52,25 @@ public class APExam extends Canvas {
     
 	private double add(double x, double y) {
     	answer = x + y;
+    	answer = Math.round(answer*10000000)/10000000.0;
     	return answer;
 	}
     
 	private double subtract(double x, double y) {
     	answer = x - y;
+    	answer = Math.round(answer*10000000)/10000000.0;
     	return answer;
 	}
     
 	private double multiply(double x, double y) {
     	answer = x * y;
+    	answer = Math.round(answer*10000000)/10000000.0;
     	return answer;
 	}
     
 	private double divide(double x, double y) {
     	answer = x / y;
+    	answer = Math.round(answer*10000000)/10000000.0;
     	return answer;
 	}
 	
@@ -72,15 +78,17 @@ public class APExam extends Canvas {
 		double a = 1;
 		double ai = 0;
 		double incri = 1;
-		while (!(((ai-x<0) && (ai-x>-0.000000001)) || ((ai-x>0) && (ai-x<0.000000001)))) {
-			ai = expo(a,y);
+		while (!(((ai-x<0) && (ai-x>-0.000000001)) || ((ai-x>0) && (ai-x<0.000000001)) || ai==x)) {
+			ai = 1;
+    		for (int i = 0; i < y; i++) {
+    			ai = ai * a;
+    		}
 			if (ai < x){
 				a = a+incri;
 			} else if (ai > x){
 				a = a-incri;
 				incri = incri/10.0;
 			}
-			System.out.println(a);
 		}
 		a = Math.floor(a * 10000000) / 10000000;
 		answer = a;
@@ -103,7 +111,7 @@ public class APExam extends Canvas {
 		return factors;
 	}
 	
-	private String decToFrac(double x, double y){
+	private int[] decToFrac(double x, double y){
 		double numer = 1;
 		double denom = 1;
 		int i = 1;
@@ -114,13 +122,22 @@ public class APExam extends Canvas {
 			}
 			i++;
 		}
-		return ((int) numer) + "/" + ((int) denom);
+		int[] frac = new int[2];
+		frac[0] = (int) numer;
+		frac[1] = (int) denom;
+		return frac;
 	}
     
 	private double expo(double x, double y) {
     	double a = x;
-    	long ipart = (long) y;
-    	y = y - ipart;
+    	int ipart = (int) y;
+    	if (ipart>0){
+    		y = subtract(y,ipart);    		
+    	} else if (ipart<0) {
+    		y = y + ipart;
+    	} if (ipart==0){
+    		a = 1;
+    	}
     	if (ipart>1) {
     		for (int i = 0; i < ipart-1; i++) {
     			a = a * x;
@@ -130,17 +147,23 @@ public class APExam extends Canvas {
     		for (int i = 0; i > ipart; i--) {
     			a = a / x;
     		}
-    	} else if(ipart==0.0) {
+    	}
+    	if (y<0.0){
+    		y = y*-1;
+    		int[] frac = new int[2];
+    		frac = decToFrac(y,0);
+    		for (int g = 0; g < frac[0]; g++){
+    			a = a/radicals(x,frac[1]);
+    		}
+    	} else if (y>0.0){
+    		int[] frac = new int[2];
+    		frac = decToFrac(y,0);
+    		for (int g = 0; g < frac[0]; g++){
+    			a = a*radicals(x,frac[1]);
+    		}
+    	} if(ipart==0.0 && y==0.0) {
     		a = 1;
     	} 
-    	if (y<0){
-    		
-    		for (int i = 0; i < 10; i++) {
-
-    		}
-    	} else if (y>0){
-    		a = a * radicals(x,(int) divide(1,y));
-    	}
     	answer = a;
     	return answer;
 	}
@@ -353,41 +376,44 @@ public class APExam extends Canvas {
     
 	public static void main(String[] args) {
     	APExam main = new APExam();
-    	Scanner scanner = new Scanner(System.in);
-    	double x, y;
-    	//String comp;
-   	 
-    	JFrame frame = new JFrame();//original code named this "FrameDemo" as a string parameter
-        frame.setPreferredSize(new Dimension(width * scale, height * scale));//not in original code, used to set size
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(main.window);
-        frame.pack();
-        frame.setVisible(true);
-        main.window.setLayout(null);
-        
-        main.drawButtons();
-        
-        /*main.drawButtons("1", main.one, main.rone, 12, 12, 1);
-        main.drawButtons("2", main.two, main.rtwo, 12, 54, 2);
-        main.drawButtons("3", main.three, main.rthree, 12, 96, 3);
-        main.drawButtons("4", main.four, main.rfour, 84, 12, 4);
-        main.drawButtons("5", main.five, main.rfive, 84, 54, 5);
-        main.drawButtons("6", main.six, main.rsix, 84, 96, 6);
-        main.drawButtons("7", main.seven, main.rseven, 156, 12, 7);
-        main.drawButtons("8", main.eight, main.reight, 156, 54, 8);
-        main.drawButtons("9", main.nine, main.rnine, 156, 96, 9);
-        main.drawButtons("0", main.zero, main.rzero, 84, 138, 0);
-        main.drawButtons("+", main.addition, main.raddition, 228, 12, 10);
-<<<<<<< HEAD
-        main.drawButtons("-", main.subtraction, main.rsubtraction, 228, 54, 11);
-=======
-        main.drawButtons("-", main.subtraction, main.rsubtraction, 228, 54, 11);*/
-   	 
-        x = scanner.nextDouble();
-        y = scanner.nextDouble();
-        main.comp = scanner.nextDouble();
-        
-    	main.thing(x, y);
+    	while (0==0) {
+    		Scanner scanner = new Scanner(System.in);
+
+	    	double x, y;
+	    	//String comp;
+	   	 
+	    	JFrame frame = new JFrame();//original code named this "FrameDemo" as a string parameter
+	        frame.setPreferredSize(new Dimension(width * scale, height * scale));//not in original code, used to set size
+	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frame.getContentPane().add(main.window);
+	        frame.pack();
+	        frame.setVisible(true);
+	        main.window.setLayout(null);
+	        
+	        main.drawButtons();
+	        
+	        /*main.drawButtons("1", main.one, main.rone, 12, 12, 1);
+	        main.drawButtons("2", main.two, main.rtwo, 12, 54, 2);
+	        main.drawButtons("3", main.three, main.rthree, 12, 96, 3);
+	        main.drawButtons("4", main.four, main.rfour, 84, 12, 4);
+	        main.drawButtons("5", main.five, main.rfive, 84, 54, 5);
+	        main.drawButtons("6", main.six, main.rsix, 84, 96, 6);
+	        main.drawButtons("7", main.seven, main.rseven, 156, 12, 7);
+	        main.drawButtons("8", main.eight, main.reight, 156, 54, 8);
+	        main.drawButtons("9", main.nine, main.rnine, 156, 96, 9);
+	        main.drawButtons("0", main.zero, main.rzero, 84, 138, 0);
+	        main.drawButtons("+", main.addition, main.raddition, 228, 12, 10);
+	<<<<<<< HEAD
+	        main.drawButtons("-", main.subtraction, main.rsubtraction, 228, 54, 11);
+	=======
+	        main.drawButtons("-", main.subtraction, main.rsubtraction, 228, 54, 11);*/
+	   	 
+	        x = scanner.nextDouble();
+	        y = scanner.nextDouble();
+	        main.comp = scanner.nextDouble();
+	        
+	    	main.thing(x, y);
+    	}
 	}
     
 }
