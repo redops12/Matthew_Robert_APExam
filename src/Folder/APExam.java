@@ -172,11 +172,8 @@ public class APExam {
 	private double expo(double x, double y) {
     	double a = x;
     	int ipart = (int) y;
-    	if (ipart>0){
-    		y = subtract(y,ipart);    		
-    	} else if (ipart<0) {
-    		y = y + ipart;
-    	} if (ipart==0){
+    	y = subtract(y,ipart);    		
+    	if (ipart==0){
     		a = 1;
     	}
     	if (ipart>1) {
@@ -189,6 +186,7 @@ public class APExam {
     			a = a / x;
     		}
     	}
+    	System.out.println(y);
     	if (y<0.0){
     		y = y*-1;
     		int[] frac = new int[2];
