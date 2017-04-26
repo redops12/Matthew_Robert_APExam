@@ -30,7 +30,10 @@ public class APExam {
     		System.out.println("prime factor");
     		System.out.println(primeFactor(x,0));
   		} else if(comp == 9) {
+<<<<<<< HEAD
     		System.out.println("converting decimal to fraction");
+=======
+>>>>>>> 2576372f93163e7a873c078892743f5a8b521870
   			int[] frac = new int[2];
   			frac = decToFrac(x,y);
     		System.out.println(frac[0]+"/"+frac[1]);
@@ -70,7 +73,11 @@ public class APExam {
 		double a = 1;
 		double ai = 0;
 		double incri = 1;
+<<<<<<< HEAD
 		while (!(((ai-x<0) && (ai-x>-0.0000000001)) || ((ai-x>0) && (ai-x<0.0000000001)) || ai==x)) {
+=======
+		while (!(((ai-x<0) && (ai-x>-0.000000001)) || ((ai-x>0) && (ai-x<0.000000001)) || ai==x)) {
+>>>>>>> 2576372f93163e7a873c078892743f5a8b521870
 			ai = 1;
     		for (int i = 0; i < y; i++) {
     			ai = ai * a;
@@ -103,6 +110,7 @@ public class APExam {
 		return factors;
 	}
 	
+<<<<<<< HEAD
 	List<Integer> factorsA = new ArrayList<Integer>();
 	private List<Integer> primeFactorA(double x, double y) {
 		factorsA.clear();
@@ -156,6 +164,8 @@ public class APExam {
 		return result;
 	}
 	
+=======
+>>>>>>> 2576372f93163e7a873c078892743f5a8b521870
 	private int[] decToFrac(double x, double y){
 		double numer = 1;
 		double denom = 1;
@@ -209,7 +219,11 @@ public class APExam {
     	} if(ipart==0.0 && y==0.0) {
     		a = 1;
     	} 
+<<<<<<< HEAD
     	answer = Math.round(a*100000)/100000.0;
+=======
+    	answer = a;
+>>>>>>> 2576372f93163e7a873c078892743f5a8b521870
     	return answer;
 	}
 
@@ -221,17 +235,55 @@ public class APExam {
     
 	public static void main(String[] args) {
     	APExam main = new APExam();
+<<<<<<< HEAD
     	int u = 0;
     	while (u == 0) {
     		Scanner scanner = new Scanner(System.in);
 
 	    	double x, y;
+=======
+    	while (0==0) {
+    		Scanner scanner = new Scanner(System.in);
+
+	    	double x, y;
+	    	//String comp;
+	   	 
+	    	JFrame frame = new JFrame();//original code named this "FrameDemo" as a string parameter
+	        frame.setPreferredSize(new Dimension(width * scale, height * scale));//not in original code, used to set size
+	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frame.getContentPane().add(main.window);
+	        frame.pack();
+	        frame.setVisible(true);
+	        main.window.setLayout(null);
+	        
+	        main.drawButtons();
+	        
+	        /*main.drawButtons("1", main.one, main.rone, 12, 12, 1);
+	        main.drawButtons("2", main.two, main.rtwo, 12, 54, 2);
+	        main.drawButtons("3", main.three, main.rthree, 12, 96, 3);
+	        main.drawButtons("4", main.four, main.rfour, 84, 12, 4);
+	        main.drawButtons("5", main.five, main.rfive, 84, 54, 5);
+	        main.drawButtons("6", main.six, main.rsix, 84, 96, 6);
+	        main.drawButtons("7", main.seven, main.rseven, 156, 12, 7);
+	        main.drawButtons("8", main.eight, main.reight, 156, 54, 8);
+	        main.drawButtons("9", main.nine, main.rnine, 156, 96, 9);
+	        main.drawButtons("0", main.zero, main.rzero, 84, 138, 0);
+	        main.drawButtons("+", main.addition, main.raddition, 228, 12, 10);
+	<<<<<<< HEAD
+	        main.drawButtons("-", main.subtraction, main.rsubtraction, 228, 54, 11);
+	=======
+	        main.drawButtons("-", main.subtraction, main.rsubtraction, 228, 54, 11);*/
+>>>>>>> 2576372f93163e7a873c078892743f5a8b521870
 	   	 
 	        x = scanner.nextDouble();
 	        y = scanner.nextDouble();
 	        main.comp = scanner.nextDouble();
 	        
+<<<<<<< HEAD
 	    	main.centralProcessor(x, y);
+=======
+	    	main.thing(x, y);
+>>>>>>> 2576372f93163e7a873c078892743f5a8b521870
     	}
 	}
     
