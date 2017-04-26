@@ -123,38 +123,34 @@ public class APExam {
 	List<Integer> factors2 = new ArrayList<Integer>();
 	List<Integer> outcome = new ArrayList<Integer>();
 	private int gcf(int x, int y) {
-		factors1.clear();
-		factors2.clear();
-		outcome.clear();
 		primeFactor(x, 0);
 		factors1 = factors;
-		//System.out.println(factors1.size());
-		//System.out.println();
-		
 		primeFactorA(y, 0);
 		factors2 = factorsA;
 		for (int a = 0; a < factors1.size(); a++) {
 			for (int b = 0; b < factors2.size(); b++) {
 				if (factors1.get(a) == factors2.get(b)) {
-					//System.out.println(factors1.get(a));
-					outcome.add(factors1.get(a));
-					factors1.remove(a);
-					factors2.remove(b);
+					if (factors1.size() >= factors2.size()) {
+						outcome.add(factors1.get(a));
+						factors2.remove(b);
+					} else {
+						outcome.add(factors2.get(b));
+						factors1.remove(a);
+					}
 				}
 			}
 		}
-		//System.out.println();
-		//System.out.println(outcome);
+		System.out.println();
+		System.out.println(outcome);
 		int result = 1;
 		for (int c = 0; c < outcome.size(); c++) {
 			result *= outcome.get(c);
 		}
-		if (x==y){
-			result = x;
-		}
-		//System.out.println();
+		System.out.println();
 		return result;
 	}
+
+
 	
 	private int[] decToFrac(double x, double y){
 		double numer = 1;
