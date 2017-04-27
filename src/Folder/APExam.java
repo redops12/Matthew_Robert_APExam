@@ -29,14 +29,12 @@ public class APExam {
     	} else if (comp == 7) {
     		System.out.println("prime factor");
     		System.out.println(primeFactor(x,0));
-  		} else if(comp == 9) {
+  		} else if(comp == 8) {
     		System.out.println("converting decimal to fraction");
   			int[] frac = new int[2];
   			frac = decToFrac(x,y);
     		System.out.println(frac[0]+"/"+frac[1]);
-    	} else if (comp == 8) {
-    		System.out.println(sin((int) x, 0));
-    	} else if (comp == 10) {
+    	} else if (comp == 9) {
     		System.out.println("greatest common factor");
     		System.out.println(gcf((int) x, (int) y));
     	}
@@ -186,7 +184,7 @@ public class APExam {
     			a = a / x;
     		}
     	}
-    	System.out.println(y);
+    	//System.out.println(y);
     	if (y<0.0){
     		y = y*-1;
     		int[] frac = new int[2];
@@ -207,15 +205,19 @@ public class APExam {
     	return answer;
 	}
 
-	
-	private int sin(int ang, int y) {
-		int[] sinValues = {12, 13, 14};
-		return sinValues[ang - 1];
-	}
-    
 	public static void main(String[] args) {
     	APExam main = new APExam();
     	int u = 0;
+    	System.out.println("form: x y comp");
+    	System.out.println("comp=1:add x+y");
+    	System.out.println("comp=2:subtract x-y");
+    	System.out.println("comp=3:multiply x*y");
+    	System.out.println("comp=4:divide x/y");
+    	System.out.println("comp=5:exponential x^y");
+    	System.out.println("comp=6:radical yÃx");
+    	System.out.println("comp=7:prime factor x");
+    	System.out.println("comp=8:decimal to fraction x");
+    	System.out.println("comp=9:greatest common factor of x and y");
     	while (u == 0) {
     		Scanner scanner = new Scanner(System.in);
 
